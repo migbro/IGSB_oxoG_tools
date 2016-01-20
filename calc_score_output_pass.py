@@ -55,7 +55,8 @@ for line in fh:
     sys.stderr.write(date_time() + 'Getting files for ' + pair)
     report = anno_dir + '/' + pair[0] + '/OUTPUT/' + pair[0] + '.vcf.keep.eff.xls'
     metalfox_out = 'FOXOG/' + pair[0] + '.foxog_scored_added.out'
-    get_files = src_cmd + deproxy + 'swift download ' + cont + ' ' + report + ' ' + metalfox_out
+    get_files = src_cmd + deproxy + 'swift download ' + cont + ' ' + report + ' ' + metalfox_out\
+                + ' >> dl.log 2>> dl.log'
     subprocess.call(get_files, shell=True)
     mo = open(metalfox_out, 'r')
     ro = open(report, 'r')
