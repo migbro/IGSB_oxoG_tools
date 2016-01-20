@@ -5,7 +5,7 @@ Adjusts report output according to foxoG filter score and summarizes results
 Usage: ./calc_score_output_pass.py <pair_list> <config_file>
 
 Arguments:
-<file_list>     list of pairs that were run
+<pair_list>     list of pairs that were run
 <config_file>   json file with parameters pertaining to object store locations
 
 Options
@@ -40,7 +40,7 @@ config_file = args['<config_file>']
 src_cmd = '. ~/.novarc;'
 deproxy = 'unset http_proxy; unset https_proxy;'
 
-fh = open(args['<file_list'])
+fh = open(args['<pair_list>'])
 (cont, anno_dir) = parse_config(config_file)
 
 # score calculation for passing grade: tumor_lod > 10 + (100/3) FoxoG
