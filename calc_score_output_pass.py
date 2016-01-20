@@ -15,7 +15,7 @@ Options
 
 import json
 import sys
-
+import pdb
 sys.path.append('/home/ubuntu/TOOLS/Scripts/utility')
 from date_time import date_time
 import subprocess
@@ -29,6 +29,7 @@ def parse_config(config_file):
 
 def calc_pass(foxog, tlod, coeff1, coeff2):
     state = 'FAIL'
+    # pdb.set_trace()
     score = float(coeff1) + (float(coeff2) * float(foxog))
     if tlod > score:
         state = 'PASS'
@@ -78,7 +79,7 @@ for line in fh:
         rpt_entry = next(ro)
         report_info = rpt_entry.rstrip('\n').split('\t')
         gene = report_info[13]
-        info = entry.rstrip('\n')
+        info = entry.rstrip('\n').split('\t')
         chrom = info[0]
         pos = info[1]
         tlod = info[18]
@@ -98,6 +99,6 @@ for line in fh:
     mo.close()
     score_sum_out.close()
     cur_out.close()
-    sys.stdout.write('\t'.join((str(orig['ON']), str(orig['OFF'], str(filt['ON']), str(filter()['OFF'])))) + '\n')
+    sys.stdout.write('\t'.join((str(orig['ON']), str(orig['OFF']), str(filt['ON']), str(filt['OFF']))) + '\n')
 fh.close()
 sys.stderr.write(date_time() + 'Process  complete\n')
