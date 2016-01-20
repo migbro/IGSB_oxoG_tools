@@ -29,7 +29,7 @@ def parse_config(config_file):
 
 def calc_pass(foxog, tlod, coeff1, coeff2):
     state = 'FAIL'
-    score = float(coeff1) + (float(coeff2) * foxog)
+    score = float(coeff1) + (float(coeff2) * float(foxog))
     if tlod > score:
         state = 'PASS'
     return (score, state)
