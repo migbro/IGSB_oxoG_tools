@@ -21,6 +21,8 @@ lib/
 lib64/
 parts/
 sdist/
+/date_time.py
+/job_manager.py
 var/
 *.egg-info/
 .installed.cfg
