@@ -31,7 +31,7 @@ def calc_pass(foxog, tlod, coeff1, coeff2):
     state = 'FAIL'
     # pdb.set_trace()
     score = float(coeff1) + (float(coeff2) * float(foxog))
-    if tlod > score:
+    if float(tlod) > score:
         state = 'PASS'
     return (score, state)
 
@@ -53,7 +53,7 @@ sys.stdout.write('Sample\toriginal on target\toriginal off target\tfiltered on t
 for line in fh:
     line = line.rstrip('\n')
     pair = line.split('\t')
-    sys.stderr.write(date_time() + 'Getting files for ' + pair[0])
+    sys.stderr.write(date_time() + 'Getting files for ' + pair[0] + '\n')
     report = anno_dir + '/' + pair[0] + '/OUTPUT/' + pair[0] + '.vcf.keep.eff.xls'
     metalfox_out = 'FOXOG/' + pair[0] + '.foxog_scored_added.out'
     get_files = src_cmd + deproxy + 'swift download ' + cont + ' ' + report + ' ' + metalfox_out\
@@ -99,6 +99,6 @@ for line in fh:
     mo.close()
     score_sum_out.close()
     cur_out.close()
-    sys.stdout.write('\t'.join((str(orig['ON']), str(orig['OFF']), str(filt['ON']), str(filt['OFF']))) + '\n')
+    sys.stdout.write('\t' + '\t'.join((str(orig['ON']), str(orig['OFF']), str(filt['ON']), str(filt['OFF']))) + '\n')
 fh.close()
 sys.stderr.write(date_time() + 'Process  complete\n')
