@@ -29,7 +29,7 @@ def parse_config(config_file):
 
 def calc_pass(foxog, tlod, coeff1, coeff2):
     state = 'FAIL'
-    score = coeff1 + coeff2 * foxog
+    score = float(coeff1) + (float(coeff2) * foxog)
     if tlod > score:
         state = 'PASS'
     return (score, state)
@@ -62,7 +62,6 @@ for line in fh:
     mo = open(metalfox_out, 'r')
     ro = open(report, 'r')
     head = next(ro)
-    head = head.replace('\n', '\tscore\n')
     # create filtered report and a score summary in case one  wants to review and adjust coefficients
     cur = pair[0] + '.report_filtered.xls'
     score_sum = pair[0] + '.score_summary.txt'
