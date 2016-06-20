@@ -30,10 +30,16 @@ def metalfox_pipe(config_file, sample_pairs, ref_mnt):
         get_bam_name = 'swift list ' + cont + ' --prefix ' + obj + '/' + info[1] + '/BAM/' + info[1] \
                        + ' | grep .rmdup.srt.ba* '
         bam = subprocess.check_output(get_bam_name, shell=True).split('\n')
-        dl_bam = 'swift download ' + cont + ' ' + bam[1] + ';swift download ' + cont + ' ' + bam[0] + ';'
+        dl_bam = 'swift download --skip-identical ' + cont + ' ' + bam[1] + ';swift download --skip-identical ' \
+                 + cont + ' ' + bam[0] + ';'
         mut_out = 'ANALYSIS/' + info[0] + '/OUTPUT/' + info[0] + '.out.keep'
         dl_out = 'swift download ' + cont + ' ' + mut_out + ';'
-        run_metal = metalfox_tool + ' -f1 ' + mut_out + ' -f3 ' + bam[1] + ' -m ' + map_ref + ' > ' + info[0] + \
+        # .bai/.bam extension not always clear
+        if bam[1][-3:] == 'bam':
+            run_metal = metalfox_tool + ' -f1 ' + mut_out + ' -f3 ' + bam[1] + ' -m ' + map_ref + ' > ' + info[0] + \
+                    '.foxog_scored_added.out;'
+        else:
+            run_metal = metalfox_tool + ' -f1 ' + mut_out + ' -f3 ' + bam[0] + ' -m ' + map_ref + ' > ' + info[0] + \
                     '.foxog_scored_added.out;'
         cleanup = 'rm ' + ' '.join((bam[0], bam[1], mut_out)) + ';'
         job_list.append(src_cmd + deproxy + dl_bam + dl_out + run_metal)  # + cleanup)
