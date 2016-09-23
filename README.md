@@ -12,9 +12,11 @@ novarc file.  Files also have expected suffixes
 Wrapper script to run an edited version of metalfox (original was obtained here:
 https://github.com/cpwardell/bin/blob/master/metalfox.py) to calculate foxoG scored for each variant
 #####Usage:
+
  ```
  ./metalfox_pipe.py -j <config_file> -sp <sample_pairs_list> -r <reference_mount> 
  ```
+
  Input description:
 
  config_file: json-formatted text file.  See example file - only relevant variables are:
@@ -30,6 +32,7 @@ https://github.com/cpwardell/bin/blob/master/metalfox.py) to calculate foxoG sco
 Can be run separately from above wrapper if only one sample to be used.  Need to have downloaded relevant files ahead
  of time
 #####Usage:
+
 ```
 ./metalfox.py -f1 full path to exome directory -f full path to MuTect call_stats.out file -f3 full path to bam
 -m mapability file
@@ -50,9 +53,11 @@ m: optional mapability file
  Runs picard CollectOxoGMetrics which give a sample/bam file global damage scores for each base change type.  Scores 
  above 30 are considered little to no damage, 20-30, concerning, and below 20 severe.
 #####Usage: 
+
 ```
 ./oxog_check.py  -j <config_file> -f <lane_list> -r <reference_mount>
  ```
+
  Input description:
 
  config_file: json-formatted text file.  See example file - only relevant variables are:
@@ -71,6 +76,7 @@ m: optional mapability file
 #####Description
 Downloads reports and adjusts based out metalfox output showing only variants that passed, limited to on-target
 #####Usage:
+
 ```
 ./calc_score_output_pass.py <pair_list> <config_file>
 ```
@@ -86,6 +92,7 @@ pair_list: tumor normal pairs as bionimbus ids, formatted as such:
 #####Description:
 Summarizes all samples oxog damage from output of oxog_check.py
 #####Usage:
+
 ```
 ./oxog_summary.py <file_list> <suffix>
 ```
