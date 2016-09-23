@@ -25,7 +25,6 @@ def metalfox_pipe(config_file, sample_pairs, ref_mnt):
     for sn in pairs:
         sn = sn.rstrip('\n')
         info = sn.split('\t')
-        # stdout=PIPE
         sys.stderr.write('Getting bam file name for ' + info[1] + '\n')
         get_bam_name = 'swift list ' + cont + ' --prefix ' + obj + '/' + info[1] + '/BAM/' + info[1] \
                        + ' | grep .rmdup.srt.ba* '
@@ -44,7 +43,7 @@ def metalfox_pipe(config_file, sample_pairs, ref_mnt):
         cleanup = 'rm ' + ' '.join((bam[0], bam[1], mut_out)) + ';'
         job_list.append(src_cmd + deproxy + dl_bam + dl_out + run_metal)  # + cleanup)
     pairs.close()
-    sys.stderr.write(date_time() + 'Queing jobs\n')
+    sys.stderr.write(date_time() + 'Queueing jobs\n')
     job_manager(job_list, max_t)
 
 

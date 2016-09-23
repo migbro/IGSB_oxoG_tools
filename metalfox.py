@@ -1,6 +1,6 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python
 
-# Obtained by MBROWN on git hun from https://github.com/cpwardell/bin/blob/master/metalfox.py, repurposed
+# Obtained by MBROWN on git hub from https://github.com/cpwardell/bin/blob/master/metalfox.py, repurposed
 # Purpose: Metal Fox is a variant filtering tool.
 
 # Accepts either an exome directory as input, or
