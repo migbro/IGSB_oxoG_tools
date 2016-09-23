@@ -71,7 +71,8 @@ m: optional mapability file
 #####Description
 Downloads reports and adjusts based out metalfox output showing only variants that passed, limited to on-target
 #####Usage:
-```./calc_score_output_pass.py <pair_list> <config_file>
+```
+./calc_score_output_pass.py <pair_list> <config_file>
 ```
  Input description:
 
